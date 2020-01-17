@@ -5,6 +5,12 @@ import (
 	"../../cmd"
 )
 
+var configDefault int
+
 func defaultLevel() logger.LogLevel {
-	return logger.Info + logger.LogLevel(cmd.Quiet-cmd.Verbose)
+	return logger.LogLevel(configDefault) + logger.LogLevel(cmd.Quiet-cmd.Verbose)
+}
+
+func init() {
+	cmd.GetInt("log.console.defaultLevel", &configDefault)
 }

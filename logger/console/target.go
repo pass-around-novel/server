@@ -14,21 +14,11 @@ import (
 type target struct{}
 
 var (
-	timeFormat          = "15:04:05"
-	primaryLevelFormats = []string{
-		"[%s] [DBG ] %s\n",
-		"[%s] [INFO] %s\n",
-		"[%s] [WARN] %s\n",
-		"[%s] [ERR ] %s\n",
-	}
-	secondaryLevelFormats = []string{
-		"           [DBG ] %[2]s\n",
-		"           [INFO] %[2]s\n",
-		"           [WARN] %[2]s\n",
-		"           [ERR ] %[2]s\n",
-	}
-	levels = make(map[string]*logger.LogLevel)
-	mutex  sync.Mutex
+	timeFormat            string
+	primaryLevelFormats   []string
+	secondaryLevelFormats []string
+	levels                = make(map[string]*logger.LogLevel)
+	mutex                 sync.Mutex
 )
 
 func computeLevel(name string) logger.LogLevel {
@@ -70,6 +60,9 @@ func (target) Log(name string, level logger.LogLevel, msg string, t time.Time) {
 func init() {
 	logger.AddTarget(&target{})
 	cmd.ConfigUpdated = append(cmd.ConfigUpdated, configUpdated)
+	cmd.GetString("log.console.timeFormat", &timeFormat)
+	cmd.GetStringSlice("log.console.primaryFormats", &primaryLevelFormats)
+	cmd.GetStringSlice("log.console.secondaryFormats", &secondaryLevelFormats)
 }
 
 // Init causes the package to load

@@ -45,7 +45,7 @@ func initConfig() {
 		viper.SetConfigFile(cfgFile)
 	} else {
 		viper.SetConfigName("pass-around-novel.conf")
-		viper.SetConfigType("ini")
+		viper.SetConfigType("toml")
 		viper.AddConfigPath("/etc/")
 		viper.AddConfigPath("$HOME/.config")
 		viper.AddConfigPath(".")
