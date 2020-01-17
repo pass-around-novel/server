@@ -1,0 +1,65 @@
+type User {
+    username: string
+    uuid: string
+    password: string
+    password_token: string
+    email: string
+    email_token: string
+    phone: string
+    phone_token: string
+    since: dateTime
+    picture: string
+    auth: [Token]
+    friends: [User] # facets:
+                    # nickname: string
+                    # since: dateTime
+    novels: [Novel] # facets:
+                    # starred bool
+                    # notify bool
+                    # chapter int
+                    # pos int
+                    # turn int
+    roles: [Role]   # facets:
+                    # priority int
+}
+
+type Token {
+    token: string
+    since: dateTime
+    until: dateTime
+    user: [User]
+}
+
+type Role {
+    name: string
+    perms: [Permission] # facets:
+                        # value any
+}
+
+type Permission {
+    name: string
+}
+
+type Novel {
+    name: string
+    uuid: string
+    num_chapters: int
+    since: dateTime
+    last_turn: dateTime
+    done: bool
+    picture: string
+    public: bool
+    turn_min: int
+    turn_max: int
+    turn_type: int
+    users: [User]
+}
+
+username: string @index(hash)
+uuid: string @index(hash)
+password_token: string @index(hash)
+email: string @index(hash)
+email_token: string @index(hash)
+phone: string @index(hash)
+phone_token: string @index(hash)
+token: string @index(hash)
