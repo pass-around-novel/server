@@ -1,0 +1,28 @@
+{
+    "bsonType": "object",
+    "description": "Picture data",
+    "required": [
+        "uuid",
+        "owner",
+        "since",
+        "data"
+    ],
+    "properties": {
+        "uuid": {
+            "bsonType": "string",
+            "description": "Picture UUID"
+        },
+        "owner": {
+            "bsonType": "string",
+            "description": "Owner ID"
+        },
+        "since": {
+            "bsonType": "timestamp",
+            "description": "Upload timestamp"
+        },
+        "data": {
+            "bsonType": "binData",
+            "description": "Picture in PNG format"
+        }
+    }
+}

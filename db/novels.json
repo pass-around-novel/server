@@ -1,0 +1,46 @@
+{
+    "bsonType": "object",
+    "description": "Novel data",
+    "required": [
+        "uuid",
+        "chapter",
+        "name",
+        "paragraphs"
+    ],
+    "properties": {
+        "uuid": {
+            "bsonType": "string",
+            "description": "Novel UUID"
+        },
+        "chapter": {
+            "bsonType": "int",
+            "description": "Chapter ID"
+        },
+        "name": {
+            "bsonType": "string",
+            "description": "Chapter name"
+        },
+        "paragraphs": {
+            "bsonType": "array",
+            "description": "Paragraph data",
+            "items": {
+                "bsonType": "object",
+                "description": "Paragraph object",
+                "required": [
+                    "start_user",
+                    "text"
+                ],
+                "properties": {
+                    "start_user": {
+                        "bsonType": "string",
+                        "description": "Starting user ID"
+                    },
+                    "text": {
+                        "bsonType": "string",
+                        "description": "Paragraph text"
+                    }
+                }
+            }
+        }
+    }
+}

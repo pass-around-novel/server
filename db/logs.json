@@ -1,0 +1,75 @@
+{
+    "bsonType": "object",
+    "description": "Logs for one session of the server",
+    "required": [
+        "version_major",
+        "version_minor",
+        "version_commit",
+        "version_product",
+        "cmdline",
+        "start_time",
+        "log"
+    ],
+    "properties": {
+        "version_major": {
+            "bsonType": "int",
+            "description": "Server software major version"
+        },
+        "version_minor": {
+            "bsonType": "int",
+            "description": "Server software minor version"
+        },
+        "version_commit": {
+            "bsonType": "string",
+            "description": "Server software commit hash"
+        },
+        "version_product": {
+            "bsonType": "string",
+            "description": "Server software product name"
+        },
+        "cmdline": {
+            "bsonType": "string",
+            "description": "Command-line arguments"
+        },
+        "start_time": {
+            "bsonType": "timestamp",
+            "description": "Time the server started"
+        },
+        "end_time": {
+            "bsonType": "timestamp",
+            "description": "Time the server ended (if it did not crash)"
+        },
+        "log": {
+            "bsonType": "array",
+            "description": "Server log entries",
+            "items": {
+                "bsonType": "object",
+                "description": "Server log entry",
+                "required": [
+                    "time",
+                    "source",
+                    "level",
+                    "text"
+                ],
+                "properties": {
+                    "time": {
+                        "bsonType": "timestamp",
+                        "description": "Log entry timestamp"
+                    },
+                    "source": {
+                        "bsonType": "string",
+                        "description": "Log source"
+                    },
+                    "level": {
+                        "bsonType": "int",
+                        "description": "Log level"
+                    },
+                    "text": {
+                        "bsonType": "string",
+                        "description": "Log entry contents"
+                    }
+                }
+            }
+        }
+    }
+}
