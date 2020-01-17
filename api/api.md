@@ -11,6 +11,9 @@ reset_pass(token, password string) token string
 verify_email(token string) void
 verify_phone(token string) void
 authenticate(token string) void
+change_email(email string) void
+change_phone(phone string) void
+change_pass(oldpass, newpass string) void
 ```
 
 ## Friends View
