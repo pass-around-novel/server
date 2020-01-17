@@ -1,0 +1,12 @@
+Bool,bool,a boolean
+Float64,float64,a 64-bit float
+Int,int,an integer
+IntSlice,[]int,an integer array
+String,string,a string
+StringMapBool,map[string]bool,a boolean dictionary
+StringMapInt,map[string]int,an int dictionary
+StringMapString,map[string]string,a string dictionary
+StringMapStringSlice,map[string][]string,a string array dictionary
+StringSlice,[]string,a string array
+Time,time.Time,a time
+Duration,time.Duration,a duration
