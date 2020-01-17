@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
@@ -12,7 +10,12 @@ var server = &cobra.Command{
 	Short:   "Runs the server",
 	Long:    "Starts the Pass Around Novel API server",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Starting server...")
+		l.Info("Starting server...")
+		l.Debug("Debug message")
+		l.Info("Info message")
+		l.Warn("Warn message")
+		l.Error("Error message")
+		l.Info("Multi\nLine\nMessage")
 	},
 }
 

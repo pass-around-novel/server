@@ -16,6 +16,10 @@ var (
 	}
 	cfgFile     string
 	watchConfig bool
+	// Verbose is the number of verbosity levels requested by the user
+	Verbose int
+	// Quiet is the number of quiet levels requested by the user
+	Quiet int
 )
 
 // Execute runs the command-line flag parser and starts the program
@@ -31,9 +35,12 @@ func init() {
 	cobra.OnInitialize(initConfig)
 	root.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file to use")
 	root.PersistentFlags().BoolVar(&watchConfig, "watch-config", false, "automatically reload configuration when the file changes")
+	root.PersistentFlags().CountVarP(&Verbose, "verbose", "v", "Make the output more verbose")
+	root.PersistentFlags().CountVarP(&Quiet, "quiet", "q", "Make the output less verbose")
 }
 
 func initConfig() {
+	fireConfigUpdated()
 	if cfgFile != "" {
 		viper.SetConfigFile(cfgFile)
 	} else {
@@ -59,4 +66,5 @@ func initConfig() {
 	} else {
 		fmt.Printf("Read configuration from %s\n", viper.ConfigFileUsed())
 	}
+	configLoaded()
 }

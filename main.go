@@ -1,7 +1,11 @@
 package main
 
-import "./cmd"
+import (
+	"./cmd"
+	"./logger/console"
+)
 
 func main() {
+	console.Init()
 	cmd.Execute()
 }
