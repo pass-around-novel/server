@@ -19,7 +19,8 @@ var (
 	// Verbose is the number of verbosity levels requested by the user
 	Verbose int
 	// Quiet is the number of quiet levels requested by the user
-	Quiet int
+	Quiet    int
+	lateInit []func()
 )
 
 // Execute runs the command-line flag parser and starts the program
@@ -28,6 +29,11 @@ func Execute() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+}
+
+// AddCommand adds a subcommand to Cobra
+func AddCommand(cmd *cobra.Command) {
+	root.AddCommand(cmd)
 }
 
 func init() {

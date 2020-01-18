@@ -5,6 +5,8 @@ import (
 )
 
 func init() {
+	viper.SetDefault("db.dgraph.host", "127.0.0.1")
+	viper.SetDefault("db.dgraph.port", 9080)
 	viper.SetDefault("log.console.timeFormat", "15:04:05")
 	viper.SetDefault("log.console.primaryFormats", []string{
 		"[%s] [DBG ] %s\n",
