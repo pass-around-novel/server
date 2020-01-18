@@ -21,10 +21,6 @@ var (
 	mutex                 sync.Mutex
 )
 
-func computeLevel(name string) logger.LogLevel {
-	return defaultLevel()
-}
-
 // GetLevel determines the logging level for a specific logger
 func (target) GetLevel(name string) *logger.LogLevel {
 	if level, ok := levels[name]; ok {

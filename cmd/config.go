@@ -19,4 +19,5 @@ func init() {
 		"           [ERR ] %[2]s\n",
 	})
 	viper.SetDefault("log.console.defaultLevel", 1)
+	viper.SetDefault("log.console.levelOverrides", map[string]int{})
 }
