@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
@@ -20,7 +18,7 @@ var version = &cobra.Command{
 	Short: "Prints the current version",
 	Long:  "Prints the current version of the Pass Around Novel API server",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("%s version %d.%d (%s)\n", Product, MajorVersion, MinorVersion, CommitID)
+		l.Infof("%s version %d.%d (%s)", Product, MajorVersion, MinorVersion, CommitID)
 	},
 }
 

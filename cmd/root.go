@@ -58,13 +58,14 @@ func initConfig() {
 	}
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
-			fmt.Fprintln(os.Stderr, "WARN: No config file found.  Loading defaults.")
+			configLoaded()
+			l.Warn("No config file found.  Loading defaults.")
 		} else {
-			fmt.Fprintf(os.Stderr, "Unable to read config file: %s\n", err)
+			fmt.Printf("Unable to read config file: %s\n", err)
 			os.Exit(1)
 		}
 	} else {
-		fmt.Printf("Read configuration from %s\n", viper.ConfigFileUsed())
+		configLoaded()
+		l.Infof("Read configuration from %s", viper.ConfigFileUsed())
 	}
-	configLoaded()
 }

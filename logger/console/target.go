@@ -3,6 +3,7 @@ package console
 import (
 	"fmt"
 	"os"
+	"runtime"
 	"strings"
 	"sync"
 	"time"
@@ -21,6 +22,8 @@ var (
 	mutex                 sync.Mutex
 )
 
+const checkStackFrames = 10
+
 // GetLevel determines the logging level for a specific logger
 func (target) GetLevel(name string) *logger.LogLevel {
 	if level, ok := levels[name]; ok {
@@ -36,6 +39,18 @@ func (target) GetLevel(name string) *logger.LogLevel {
 // Log saves a message to the log.  It should already be filtered by level.
 func (target) Log(name string, level logger.LogLevel, msg string, t time.Time) {
 	if level < 0 || int(level) >= len(primaryLevelFormats) {
+		pc := make([]uintptr, checkStackFrames)
+		n := runtime.Callers(1, pc)
+		frames := runtime.CallersFrames(pc[:n])
+		baseFrame, more := frames.Next()
+		for more {
+			var frame runtime.Frame
+			frame, more = frames.Next()
+			if baseFrame.Func == frame.Func {
+				fmt.Printf("Unknown logging level '%d'.\n", level)
+				return
+			}
+		}
 		l.Warnf("Unknown logging level '%d'.", level)
 	} else {
 		tmstr := t.Format(timeFormat)

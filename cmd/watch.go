@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 )
@@ -38,7 +36,7 @@ func updateConfig(e fsnotify.Event) {
 		c.decoder(viper.Get(c.key), c.ptr)
 	}
 	fireConfigUpdated()
-	fmt.Println("Configuration reloaded.")
+	l.Info("Configuration reloaded.")
 }
 
 func configLoaded() {
