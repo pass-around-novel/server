@@ -1,0 +1,36 @@
+{
+	fullgraph(func: eq(dgraph.type, "User")) {
+        username
+        uuid
+        password
+        password-token
+        email
+        email-token
+        phone
+        phone-token
+        since
+        picture
+        friends @facets {
+            uid
+        }
+        roles @facets {
+            name
+            perms @facets {
+                name
+            }
+        }
+        novels @facets {
+            name
+            uuid
+            num-chapters
+            since
+            last-turn
+            done
+            picture
+            public
+            turn-min
+            turn-max
+            turn-type
+        }
+    }
+}
